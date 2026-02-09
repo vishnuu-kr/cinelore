@@ -6,6 +6,7 @@ import { getTrendingShows, getTrendingAnime } from './services/tmdbService';
 import { getTrendingManga } from './services/mangaService';
 import { AuthProvider } from './components/AuthContext';
 import { Show } from './types';
+import { APP_VERSION } from './src/constants';
 
 // Pages
 import HomePage from './components/pages/HomePage';
@@ -130,7 +131,7 @@ const AppContent: React.FC = () => {
 
             {/* Version & Copyright */}
             <div className="text-center space-y-2">
-              <p className="text-xs text-zinc-500">v4.2.0</p>
+              <p className="text-xs text-zinc-500">{APP_VERSION}</p>
               <p className="text-xs text-zinc-600">
                 © {new Date().getFullYear()} CineLore. Narrative Intelligence Platform.
               </p>
