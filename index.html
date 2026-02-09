@@ -4,7 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CineLore</title>
+    <meta name="theme-color" content="#0B0C10">
+    <title>CineLore — Narrative Intelligence</title>
     <meta name="description"
         content="CineLore: A decentralized narrative analysis platform for tracking fan theories across movies, TV, and anime.">
     <meta name="keywords" content="fan theories, movies, anime, lore, narrative analysis, timeline">
@@ -45,11 +46,44 @@
                     }
                 }
             }
+        }
     </script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap"
         rel="stylesheet">
+    
+    <!-- Critical inline CSS to prevent FOUC -->
+    <style>
+        body {
+            background-color: #0B0C10;
+            color: #e2e8f0;
+            font-family: 'Inter', sans-serif;
+        }
+        
+        #root {
+            min-height: 100vh;
+        }
+        
+        /* CSS-only loading spinner */
+        .initial-loader {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 48px;
+            height: 48px;
+            border: 4px solid rgba(229, 9, 20, 0.1);
+            border-top-color: #E50914;
+            border-radius: 50%;
+            animation: spin 0.8s linear infinite;
+        }
+        
+        @keyframes spin {
+            to { transform: translate(-50%, -50%) rotate(360deg); }
+        }
+    </style>
+
     <script type="importmap">
 {
   "imports": {
@@ -67,7 +101,9 @@
 </head>
 
 <body class="bg-investigation">
-    <div id="root"></div>
+    <div id="root">
+        <div class="initial-loader"></div>
+    </div>
     <script type="module" src="/index.tsx"></script>
 </body>
 
