@@ -12,9 +12,10 @@ import DecoderText from '../DecoderText';
 
 interface HomePageProps {
     trendingShows: Show[];
+    isLoading?: boolean;
 }
 
-const HomePage: React.FC<HomePageProps> = ({ trendingShows }) => {
+const HomePage: React.FC<HomePageProps> = ({ trendingShows, isLoading = false }) => {
     const top10ScrollRef = useRef<HTMLDivElement>(null);
     const navigate = useNavigate();
     const [trendingTheories, setTrendingTheories] = useState<Theory[]>([]);
