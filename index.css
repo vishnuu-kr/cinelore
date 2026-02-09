@@ -1,0 +1,433 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ==========================================================================
+   GLOBAL TYPOGRAPHY & DESIGN SYSTEM
+   ========================================================================== */
+
+@layer base {
+
+  /* Base HTML & Body */
+  html {
+    @apply antialiased;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    @apply bg-black text-white;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    font-size: 16px;
+    line-height: 1.5;
+    font-weight: 400;
+  }
+
+  /* Headings */
+  h1 {
+    @apply text-4xl font-bold text-white leading-tight;
+  }
+
+  h2 {
+    @apply text-3xl font-bold text-white leading-tight;
+  }
+
+  h3 {
+    @apply text-2xl font-semibold text-white leading-snug;
+  }
+
+  h4 {
+    @apply text-xl font-semibold text-white leading-snug;
+  }
+
+  h5 {
+    @apply text-lg font-medium text-white;
+  }
+
+  h6 {
+    @apply text-base font-medium text-white;
+  }
+
+  /* Paragraphs */
+  p {
+    @apply text-base text-zinc-400 leading-relaxed;
+  }
+
+  /* Links */
+  a {
+    @apply text-white transition-colors hover:text-red-500;
+  }
+
+  /* Lists */
+  ul,
+  ol {
+    @apply text-zinc-400;
+  }
+
+  /* Code */
+  code {
+    @apply text-sm font-mono bg-zinc-900 px-1.5 py-0.5 rounded;
+  }
+
+  /* Buttons */
+  button {
+    @apply font-medium transition-all;
+  }
+}
+
+@layer utilities {
+
+  /* Typography Utilities */
+  .text-display {
+    @apply text-5xl md:text-6xl font-black tracking-tight text-white;
+  }
+
+  .text-heading-1 {
+    @apply text-4xl font-bold text-white;
+  }
+
+  .text-heading-2 {
+    @apply text-3xl font-bold text-white;
+  }
+
+  .text-heading-3 {
+    @apply text-2xl font-semibold text-white;
+  }
+
+  .text-heading-4 {
+    @apply text-xl font-semibold text-white;
+  }
+
+  .text-body {
+    @apply text-base text-zinc-400;
+  }
+
+  .text-body-emphasis {
+    @apply text-base text-white font-medium;
+  }
+
+  .text-small {
+    @apply text-sm text-zinc-500;
+  }
+
+  .text-tiny {
+    @apply text-xs text-zinc-600;
+  }
+
+  /* Text Colors - Semantic */
+  .text-primary {
+    @apply text-white;
+  }
+
+  .text-secondary {
+    @apply text-zinc-400;
+  }
+
+  .text-muted {
+    @apply text-zinc-600;
+  }
+
+  .text-accent {
+    @apply text-red-500;
+  }
+
+  /* Clean Text Effects - Netflix Style */
+  .text-shadow {
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.8);
+  }
+
+  .text-shadow-strong {
+    text-shadow: 0 4px 16px rgba(0, 0, 0, 0.9);
+  }
+
+  /* Minimal Text Gradients */
+  .text-gradient-primary {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-red-500 to-red-600;
+  }
+
+  .text-gradient-premium {
+    @apply bg-clip-text text-transparent bg-gradient-to-br from-white to-gray-200;
+  }
+
+  /* Touch Optimization */
+  button,
+  a,
+  input,
+  select,
+  textarea {
+    @apply touch-manipulation;
+  }
+}
+
+/* Premium Scrollbar - Netflix Style */
+::-webkit-scrollbar {
+  width: 12px;
+}
+
+::-webkit-scrollbar-track {
+  background: #000000;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #2a2a2a;
+  border-radius: 6px;
+  border: 3px solid #000000;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #3a3a3a;
+}
+
+/* Deep Black Background - Netflix/Instagram Style */
+.bg-investigation {
+  background-color: #000000;
+  background-image:
+    radial-gradient(circle at 30% 20%, rgba(229, 9, 20, 0.08) 0%, transparent 50%),
+    radial-gradient(circle at 70% 80%, rgba(229, 9, 20, 0.05) 0%, transparent 50%);
+}
+
+/* Minimal Glassmorphism */
+.glass {
+  background: rgba(20, 20, 20, 0.7);
+  backdrop-filter: blur(16px) saturate(180%);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.glass-panel {
+  @apply bg-black/60 backdrop-blur-xl border border-white/[0.06];
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
+}
+
+.glass-premium {
+  @apply bg-black/40 backdrop-blur-2xl border border-white/[0.08];
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
+}
+
+/* Gradient Overlays - Clean */
+.gradient-overlay-top {
+  background: linear-gradient(to bottom, #000000 0%, transparent 100%);
+}
+
+.gradient-overlay-bottom {
+  background: linear-gradient(to top, #000000 0%, transparent 100%);
+}
+
+/* Subtle Shimmer */
+.shimmer {
+  background: linear-gradient(90deg,
+      transparent 0%,
+      rgba(255, 255, 255, 0.03) 50%,
+      transparent 100%);
+  background-size: 200% 100%;
+  animation: shimmer 3s infinite;
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+/* Netflix/Instagram Card System */
+.netflix-card {
+  @apply relative overflow-hidden bg-zinc-900 rounded-lg transition-all duration-500 ease-out;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
+}
+
+.netflix-card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.6);
+  z-index: 10;
+}
+
+.instagram-card {
+  @apply relative overflow-hidden bg-black border border-zinc-800 rounded-xl transition-all duration-400;
+}
+
+.instagram-card:hover {
+  @apply border-zinc-700;
+  transform: translateY(-4px);
+}
+
+.content-card {
+  @apply relative overflow-hidden rounded-xl transition-all duration-500;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+.content-card:hover {
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+  transform: scale(1.03);
+}
+
+/* Minimal Hover Effects */
+.hover-lift {
+  transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.hover-lift:hover {
+  transform: translateY(-8px);
+}
+
+.hover-scale {
+  transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.hover-scale:hover {
+  transform: scale(1.05);
+}
+
+/* Subtle Glow - Minimal */
+.glow-subtle {
+  box-shadow: 0 0 20px rgba(229, 9, 20, 0.15);
+}
+
+.glow-subtle:hover {
+  box-shadow: 0 0 30px rgba(229, 9, 20, 0.25);
+}
+
+/* Rounded Utilities */
+.rounded-inherit {
+  border-radius: inherit;
+}
+
+/* Smooth Animations - Netflix Style */
+.animate-fade-in {
+  animation: fadeIn 0.6s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+.animate-slide-up {
+  animation: slideUp 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-scale-in {
+  animation: scaleIn 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.animate-entrance {
+  animation: entrance 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes entrance {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Image Overlay - Content First */
+.image-overlay {
+  @apply absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent;
+}
+
+.image-overlay-hover {
+  @apply absolute inset-0 bg-black/20 opacity-0 transition-opacity duration-300;
+}
+
+.image-overlay-hover:hover {
+  @apply opacity-100;
+}
+
+/* Clean Badge Styles */
+.badge-clean {
+  @apply px-3 py-1 rounded-full text-xs font-semibold bg-white/10 backdrop-blur-sm border border-white/10;
+}
+
+.badge-primary {
+  @apply px-3 py-1 rounded-full text-xs font-semibold bg-red-600/20 text-red-400 border border-red-500/30;
+}
+
+/* Minimal Button Styles */
+.btn-clean {
+  @apply px-6 py-3 rounded-lg font-semibold transition-all duration-300;
+  @apply bg-white/10 hover:bg-white/20 backdrop-blur-sm;
+}
+
+.btn-primary {
+  @apply px-6 py-3 rounded-lg font-semibold transition-all duration-300;
+  @apply bg-red-600 hover:bg-red-700 text-white;
+}
+
+/* Loading States */
+.skeleton {
+  @apply bg-zinc-800 animate-pulse rounded;
+}
+
+/* Focus States - Accessibility */
+*:focus-visible {
+  outline: 2px solid rgba(229, 9, 20, 0.5);
+  outline-offset: 2px;
+}
+
+/* Smooth Page Transitions */
+.page-transition {
+  animation: pageEnter 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@keyframes pageEnter {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Clean Hover Underline - Instagram Style */
+.hover-underline {
+  @apply relative;
+}
+
+.hover-underline::after {
+  content: '';
+  @apply absolute bottom-0 left-0 w-0 h-0.5 bg-white transition-all duration-300;
+}
+
+.hover-underline:hover::after {
+  @apply w-full;
+}

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CineLore</title>
+    <meta name="description"
+        content="CineLore: A decentralized narrative analysis platform for tracking fan theories across movies, TV, and anime.">
+    <meta name="keywords" content="fan theories, movies, anime, lore, narrative analysis, timeline">
+    <meta property="og:title" content="CineLore - Narrative Intelligence">
+    <meta property="og:description"
+        content="Connect the dots between the frames. Explore and propagate deep web intelligence on your favorite shows.">
+    <meta property="og:type" content="website">
+    <link rel="icon" type="image/png" href="/favicon.png" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    borderRadius: {
+                        'lg': '12px',
+                        'xl': '16px',
+                        '2xl': '20px', // Standardized 20px radius
+                        '3xl': '32px',
+                    },
+                    spacing: {
+                        '18': '4.5rem', // 72px
+                        '112': '28rem', // 448px
+                        '128': '32rem', // 512px
+                    },
+                    colors: {
+                        red: {
+                            50: '#FEF2F2',
+                            100: '#FEE2E2',
+                            200: '#FECACA',
+                            300: '#FCA5A5',
+                            400: '#F87171',
+                            500: '#E50914', // Cinematic Red (Netflix Style)
+                            600: '#B20710', // Deep Ruby
+                            700: '#C51010',
+                            800: '#A10D0D',
+                            900: '#7F0A0A',
+                        }
+                    }
+                }
+            }
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+    <script type="importmap">
+{
+  "imports": {
+    "react": "https://esm.sh/react@19.0.0",
+    "react-dom": "https://esm.sh/react-dom@19.0.0",
+    "react-dom/client": "https://esm.sh/react-dom@19.0.0/client",
+    "lucide-react": "https://esm.sh/lucide-react@0.475.0?external=react",
+    "framer-motion": "https://esm.sh/framer-motion@11.11.11?external=react,react-dom",
+    "@google/genai": "https://esm.sh/@google/genai@1.34.0",
+    "react-dom/": "https://esm.sh/react-dom@^19.2.3/",
+    "react/": "https://esm.sh/react@^19.2.3/"
+  }
+}
+</script>
+</head>
+
+<body class="bg-investigation">
+    <div id="root"></div>
+    <script type="module" src="/index.tsx"></script>
+</body>
+
+</html>
