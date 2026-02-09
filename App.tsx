@@ -6,6 +6,7 @@ import { getTrendingShows, getTrendingAnime } from './services/tmdbService';
 import { getTrendingManga } from './services/mangaService';
 import { AuthProvider } from './components/AuthContext';
 import { Show } from './types';
+import { APP_VERSION } from './src/constants';
 
 // Pages
 import HomePage from './components/pages/HomePage';
@@ -21,7 +22,7 @@ import ProfilePage from './components/pages/ProfilePage';
 const ScrollToTop = () => {
   const { pathname } = useLocation();
   useEffect(() => {
-    window.scrollTo(0, 0);
+    window.scrollTo({ top: 0, behavior: 'instant' });
   }, [pathname]);
   return null;
 };
@@ -46,6 +47,7 @@ const HeaderWrapper: React.FC = () => {
 
 const AppContent: React.FC = () => {
   const [trendingShows, setTrendingShows] = useState<Show[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     const loadData = async () => {
@@ -60,6 +62,7 @@ const AppContent: React.FC = () => {
         // 1. Critical: Get TMDB Trending first (Fastest)
         const trending = await getTrendingShows();
         setTrendingShows(prev => mergeShows(prev, trending));
+        setIsLoading(false);
 
         // 2. Secondary: Fetch Anime & Manga in parallel without blocking UI
         getTrendingAnime().then(anime => {
@@ -72,19 +75,23 @@ const AppContent: React.FC = () => {
 
       } catch (error) {
         console.error("Failed to load initial trending data", error);
+        setIsLoading(false);
       }
     };
     loadData();
   }, []);
 
   return (
-    <div className="min-h-screen bg-[#0B0C10] text-slate-200 selection:bg-red-500/30">
+    <div className="min-h-screen bg-[#0B0C10] text-slate-200 selection:bg-red-500/30 selection:text-white">
+      <a href="#main-content" className="skip-to-main">
+        Skip to main content
+      </a>
       <ScrollToTop />
       <HeaderWrapper />
 
-      <main className="container mx-auto px-6 pt-4 relative z-10 pb-20">
+      <main id="main-content" className="container mx-auto px-4 sm:px-6 lg:px-8 pt-4 relative z-10 pb-20 page-transition">
         <Routes>
-          <Route path="/" element={<HomePage trendingShows={trendingShows} />} />
+          <Route path="/" element={<HomePage trendingShows={trendingShows} isLoading={isLoading} />} />
           <Route path="/movies" element={<BrowsePage type="movie" title="Movies" />} />
           <Route path="/tv" element={<BrowsePage type="tv" title="TV Series" />} />
           <Route path="/anime" element={<BrowsePage type="anime" title="Anime" />} />
@@ -100,10 +107,36 @@ const AppContent: React.FC = () => {
         </Routes>
       </main>
 
-      <footer className="border-t border-white/5 py-12 text-center">
-        <div className="flex flex-col items-center space-y-4 opacity-30 grayscale hover:grayscale-0 hover:opacity-100 transition-all duration-700">
-          <div className="text-sm font-bold tracking-[0.5em] text-white">CINELORE CORE v4.1.0</div>
-          <p className="text-xs font-medium">DECENTRALIZED NARRATIVE ANALYSIS</p>
+      <footer className="border-t border-white/5 bg-black/40 py-16">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex flex-col items-center space-y-8">
+            {/* Logo Mark */}
+            <div className="flex items-center gap-3">
+              <div className="w-10 h-10 bg-red-600 rounded-lg flex items-center justify-center">
+                <span className="text-2xl font-bold text-white">C</span>
+              </div>
+              <span className="text-xl font-bold tracking-[0.2em] text-white">CINELORE</span>
+            </div>
+
+            {/* Footer Navigation */}
+            <nav className="flex flex-wrap justify-center gap-6 text-sm text-zinc-400">
+              <a href="/movies" className="hover:text-white transition-colors">Movies</a>
+              <a href="/tv" className="hover:text-white transition-colors">TV Series</a>
+              <a href="/anime" className="hover:text-white transition-colors">Anime</a>
+              <a href="/manga" className="hover:text-white transition-colors">Manga</a>
+            </nav>
+
+            {/* Divider */}
+            <div className="w-32 h-px bg-white/10"></div>
+
+            {/* Version & Copyright */}
+            <div className="text-center space-y-2">
+              <p className="text-xs text-zinc-500">{APP_VERSION}</p>
+              <p className="text-xs text-zinc-600">
+                © {new Date().getFullYear()} CineLore. Narrative Intelligence Platform.
+              </p>
+            </div>
+          </div>
         </div>
       </footer>
     </div>
